@@ -5,7 +5,7 @@
 
 int main(void)
 {
-    App(600, 600, "PokeDex!", NULL);
+    App(GetScreenWidth(), GetScreenHeight(), "PokeDex!", true);
     Run();
     Exit();
 
