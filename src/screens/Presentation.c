@@ -38,7 +38,9 @@ void Presentation(const char* type){
             WaitTime(1);
             PlayPowerUpSound();
         }
-        EndDrawing();
         exeCount++;
+        EndDrawing();
     }
+    free(NAMES);
+    free(S_NAMES);
 }
