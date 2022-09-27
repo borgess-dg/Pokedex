@@ -2,7 +2,11 @@
 #define MENU_H
 
 #include "../raylib.h"
+#include "../../include/core/Renderer.h"
+#include "../../include/core/Window_Utils.h"
 
-void Menu(void);
+#include <math.h>
+
+CurrentScreen Menu(Texture2D, Texture2D, Texture2D);
 
 #endif

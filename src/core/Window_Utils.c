@@ -10,3 +10,11 @@ Coordinates WindowCenter(void){
 
     return Window;
 }
+
+int ScreenXRelatedSize(int parts){
+    return floor(GetScreenWidth()/parts);
+}
+
+int ScreenYRelatedSize(int parts){
+    return floor(GetScreenHeight()/parts);
+}

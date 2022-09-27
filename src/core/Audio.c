@@ -1,19 +1,15 @@
 #include "../../include/core/Audio.h"
 
-void PlayCoinSound(void){
-    Wave wave_sfx = LoadWave("./assets/Audio/pickupCoin.wav");
-    Sound sfx = LoadSoundFromWave(wave_sfx);
+Sound SoundLoad(const char* file){
+    Wave sfx = LoadWave(file);
+    Sound sound = LoadSoundFromWave(sfx);
+    UnloadWave(sfx);
 
-    if(IsAudioDeviceReady()){
-        PlaySound(sfx);
-    }
+    return sound;
 }
 
-void PlayPowerUpSound(void){
-    Wave wave_sfx = LoadWave("./assets/Audio/powerUp.wav");
-    Sound sfx = LoadSoundFromWave(wave_sfx);
-
+void PlayRefSound(Sound Song){
     if(IsAudioDeviceReady()){
-        PlaySound(sfx);
+        PlaySound(Song);
     }
 }

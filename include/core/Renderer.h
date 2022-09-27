@@ -3,18 +3,16 @@
 
 #include "../../include/core/Assets_Constants.h"
 
-#include "../../include/screens/Presentation.h"
-#include "../../include/screens/Menu.h"
-
 #include <stdbool.h>
 
 typedef enum{
     PRESENTATION = 0,
     MENU,
+    REGISTER,
+    INVENTORY,
+    EXIT,
     //OTHERS
-}Screen;
-
-static Screen currentScreen;
+}CurrentScreen;
 
 void Renderer();
 

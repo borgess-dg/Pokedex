@@ -3,7 +3,7 @@
 
 #include "../raylib.h"
 
-void PlayCoinSound(void);
-void PlayPowerUpSound(void);
+Sound SoundLoad(const char*);
+void PlayRefSound(Sound);
 
 #endif

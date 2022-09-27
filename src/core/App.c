@@ -9,6 +9,7 @@ void App(int WIDTH, int HEIGHT, const char* TITLE, bool FULLSCREEN){
     //Define and load the app icon image.
     Image icon = LoadImage(WIN_ICON);
     SetWindowIcon(icon);
+    SetTargetFPS(60);
     //Set fullscreen mode if FULLSCREEN == true.
     if(FULLSCREEN)
         ToggleFullscreen();
