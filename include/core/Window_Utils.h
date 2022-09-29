@@ -3,13 +3,16 @@
 
 #include "../raylib.h"
 
+#include <math.h>
+
 typedef struct{
     int x;
     int y;
 }Coordinates;
 
 Coordinates WindowCenter(void);
-int ScreenXRelatedSize(int);
-int ScreenYRelatedSize(int);
+int ScreenXRelatedSize(double);
+int ScreenYRelatedSize(double);
+Vector2 CentralizeObject(int, int);
 
 #endif

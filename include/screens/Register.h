@@ -5,6 +5,6 @@
 
 #include "../../include/core/Renderer.h"
 
-CurrentScreen Register(void);
+CurrentScreen Register(Texture2D, Texture2D, Texture2D, Texture2D, char*);
 
 #endif

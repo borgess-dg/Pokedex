@@ -4,9 +4,44 @@
 #include "../../include/core/Renderer.h"
 
 #include <stdbool.h>
-#include <string.h>
 
 CurrentScreen Presentation(const char* type, Sound Coin, Sound Powerup){
+
+    char* Names = calloc(22, sizeof(char));
+    static int ExecCounter = 1;
+    if(ExecCounter == 1){
+        BeginDrawing();
+        ClearBackground(BLACK);
+        strcat(Names, "Eduardo José Borges\n");
+        DrawText(Names, 0, 0, 20, RAYWHITE);
+        PlayRefSound(Coin);
+        WaitTime(5);
+        /**strcat(Names, "Iago Melo\n");
+        DrawText(Names, 0, 0, 20, RAYWHITE);
+        PlayRefSound(Coin);
+        WaitTime(1);
+        strcat(Names, "Laidson C. Loiola");
+        DrawText(Names, 0, 0, 20, RAYWHITE);
+        PlayRefSound(Coin);
+        WaitTime(1);
+        **/
+        EndDrawing();
+    }
+    /**else{
+        strcpy(Names, "Eduardo José Borges\nIago Melo\nLaidson C. Loiola");
+        BeginDrawing();
+        ClearBackground(BLACK);
+        DrawText("Hello", 0, 0, 24, RAYWHITE);
+        PlayRefSound(Powerup);
+        WaitTime(3);
+        EndDrawing();
+        return MENU;
+    }
+    **/
+    return PRESENTATION;
+}
+
+/**CurrentScreen Presentation(const char* type, Sound Coin, Sound Powerup){
     char NAMES[49];
     char S_NAMES[49];
     Coordinates Window = WindowCenter();
@@ -46,3 +81,4 @@ CurrentScreen Presentation(const char* type, Sound Coin, Sound Powerup){
     }
     return PRESENTATION;
 }
+**/

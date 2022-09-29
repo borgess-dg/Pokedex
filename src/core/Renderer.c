@@ -14,32 +14,31 @@ void Renderer(void){
     //This variable serves as control to alternate between ANIMATED and STATIC screen versions.
     bool isRendered = false;
     //Define the current Screen.
-    CurrentScreen currentScreen = PRESENTATION;
+    CurrentScreen currentScreen = MENU;
+    //Texture2D Background = BackgroundComponent("./assets/Images/Menu_Background_2.png");
     //Load Components
     Sound CoinSound = SoundLoad("./assets/Audio/pickupCoin.wav");
     Sound PowerUpSound = SoundLoad("./assets/Audio/powerUp.wav");
     Texture2D Background = BackgroundComponent("./assets/Images/Menu_Background_2.png");
     Texture2D MenuButton = Button("./assets/Images/Button.png");
     Texture2D HoveredMenuButton = HoverButton("./assets/Images/HoverButton.png");
+    Texture2D RegisterMenu = RegisterMenuBackground("./assets/Images/RegisterMenuBackground.png");
+    Texture2D SmallWindowButton = SmallButton("./assets/Images/Small_Window_Buttons.png");
+    char* input = calloc(100, sizeof(char));
+
     //Execution Loop
     while (currentScreen != EXIT)
     {
         //Navigate between pages.
         switch(currentScreen){
             case PRESENTATION:
-                if(!isRendered){
-                    currentScreen = Presentation(ANIMATION, CoinSound, PowerUpSound);
-                    isRendered = true;
-                }
-                else if(isRendered){
-                    currentScreen = Presentation(STATIC, CoinSound, PowerUpSound);
-                }
+                currentScreen = Presentation(ANIMATION, CoinSound, PowerUpSound);
                 break;
             case MENU:
                 currentScreen = Menu(Background, MenuButton, HoveredMenuButton);
                 break;
             case REGISTER:
-                currentScreen = Register();
+                currentScreen = Register(Background, RegisterMenu, SmallWindowButton, MenuButton, input);
                 break;
             case INVENTORY:
                 currentScreen = Inventory();
@@ -54,4 +53,5 @@ void Renderer(void){
     UnloadTexture(HoveredMenuButton);
     UnloadSound(CoinSound);
     UnloadSound(PowerUpSound);
+    free(input);
 }

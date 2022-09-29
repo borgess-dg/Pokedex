@@ -17,3 +17,11 @@ Texture2D HoverButton(const char* file){
     UnloadImage(I_HButton);
     return T_HButton;
 }
+
+Texture2D SmallButton(const char* file){
+    Image S_Button = LoadImage(file);
+    ImageResize(&S_Button, ScreenXRelatedSize(25), ScreenYRelatedSize(15));
+    Texture2D Button = LoadTextureFromImage(S_Button);
+    UnloadImage(S_Button);
+    return Button;
+}
