@@ -8,6 +8,8 @@
 #include "../../include/components/Background.h"
 #include "../../include/components/Button.h"
 #include "../../include/components/Input.h"
+#include "../../include/components/DataBox.h"
+#include "../../include/components/Markers.h"
 #include "../../include/core/Audio.h"
 
 //Render all app screens.
@@ -20,13 +22,16 @@ void Renderer(void){
     //Load Components
     Sound CoinSound = SoundLoad("./assets/Audio/pickupCoin.wav");
     Sound PowerUpSound = SoundLoad("./assets/Audio/powerUp.wav");
+    Sound SelectButton = SoundLoad("./assets/Audio/click.wav");
     Texture2D Background = BackgroundComponent("./assets/Images/Menu_Background_2.png");
     Texture2D MenuButton = Button("./assets/Images/Button.png");
     Texture2D HoveredMenuButton = HoverButton("./assets/Images/HoverButton.png");
     Texture2D RegisterMenu = RegisterMenuBackground("./assets/Images/RegisterMenuBackground.png");
     Texture2D SmallWindowButton = SmallButton("./assets/Images/Small_Window_Buttons.png");
     Texture2D InputArea = LoadInput("./assets/Images/Input.png", ScreenXRelatedSize(4), ScreenYRelatedSize(12));
-    char* Input = calloc(100, sizeof(char));
+    Texture2D DataBox = LoadDataBox("./assets/Images/DataBox.png", ScreenXRelatedSize(3.5), ScreenYRelatedSize(3.2));
+    Markers allMarkers = MarkerSet(allMarkers);
+    char* Input = calloc(25, sizeof(char));
 
     //Execution Loop
     while (currentScreen != EXIT)
@@ -37,13 +42,13 @@ void Renderer(void){
                 currentScreen = Presentation(ANIMATION, CoinSound, PowerUpSound);
                 break;
             case MENU:
-                currentScreen = Menu(Background, MenuButton, HoveredMenuButton);
+                currentScreen = Menu(Background, MenuButton, HoveredMenuButton, SelectButton);
                 break;
             case REGISTER:
-                currentScreen = Register(Background, RegisterMenu, SmallWindowButton, MenuButton, InputArea, Input);
+                currentScreen = Register(Background, RegisterMenu, SmallWindowButton, MenuButton, HoveredMenuButton, InputArea, DataBox, allMarkers, Input);
                 break;
             case INVENTORY:
-                currentScreen = Inventory();
+                currentScreen = Inventory(Background, RegisterMenu);
                 break;
             case EXIT:
                 break;

@@ -4,7 +4,8 @@
 #include "../raylib.h"
 
 #include "../../include/core/Renderer.h"
+#include "../../include/core/Window_Utils.h"
 
-CurrentScreen Inventory(void);
+CurrentScreen Inventory(Texture2D, Texture2D);
 
 #endif

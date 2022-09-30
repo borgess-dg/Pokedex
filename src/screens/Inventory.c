@@ -1,9 +1,10 @@
 #include "../../include/screens/Inventory.h"
 
-CurrentScreen Inventory(){
+CurrentScreen Inventory(Texture2D Background, Texture2D RegisterScreenBackground){
     BeginDrawing();
     ClearBackground(RAYWHITE);
-    DrawText("Invetory Page!", 0, 0, 12, BLUE);
+    DrawTextureEx(Background, (Vector2){0, 0}, 0.f, 1.f, WHITE);
+    DrawTextureEx(RegisterScreenBackground, CentralizeObject(RegisterScreenBackground.width, RegisterScreenBackground.height), 0.f, 1.f, WHITE);
     if(IsKeyPressed(KEY_ESCAPE)){
         return EXIT;
     }

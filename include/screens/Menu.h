@@ -7,6 +7,6 @@
 
 #include <math.h>
 
-CurrentScreen Menu(Texture2D, Texture2D, Texture2D);
+CurrentScreen Menu(Texture2D, Texture2D, Texture2D, Sound);
 
 #endif

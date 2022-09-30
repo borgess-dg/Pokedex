@@ -12,4 +12,7 @@ void PlayRefSound(Sound Song){
     if(IsAudioDeviceReady()){
         PlaySound(Song);
     }
+    else{
+        TraceLog(LOG_ERROR, "Audio Device ERROR!");
+    }
 }
