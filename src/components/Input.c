@@ -5,13 +5,26 @@
 #include <stdlib.h>
 #include <stdbool.h>
 #include <string.h>
+#include <math.h>
 
-void InputComponent(char* input, int SizeX, int SizeY, int POS_X, int POS_Y){
+static int GSizeX, GSizeY;
+
+Texture2D LoadInput(const char* file, int SizeX, int SizeY){
+    Image InputImage = LoadImage(file);
+    ImageResize(&InputImage, SizeX, SizeY);
+    GSizeX = SizeX;
+    GSizeY = SizeY;
+    Texture2D Input = LoadTextureFromImage(InputImage);
+    UnloadImage(InputImage);
+    return Input;
+}
+
+void InputComponent(Texture2D InputTexture, char* input, int POS_X, int POS_Y){
     static bool isFocused;
     static int counter;
-    SetTargetFPS(10);
-    DrawRectangle(POS_X, POS_Y, SizeX, SizeY, WHITE);
-    if(IsMouseHover(SizeX, SizeY, POS_X, POS_Y)){
+    DrawTextureEx(InputTexture, (Vector2){POS_X, POS_Y}, 0.f, 1.f, WHITE);
+    //DrawRectangle(POS_X, POS_Y, GSizeX, GSizeY, WHITE);
+    if(IsMouseHover(GSizeX, GSizeY, POS_X, POS_Y)){
         SetMouseCursor(MOUSE_CURSOR_IBEAM);
         isFocused = true;
         int key = GetCharPressed();
@@ -21,21 +34,19 @@ void InputComponent(char* input, int SizeX, int SizeY, int POS_X, int POS_Y){
                 input[counter + 1] = '\0';
                 counter++;
             }
-            key = GetCharPressed();  
-            if(IsKeyPressed(KEY_BACKSPACE)){
+            key = GetCharPressed();     
+        }
+        if(IsKeyPressed(KEY_BACKSPACE)){
                 counter--;
-                if(counter < 0)
+                if(counter < 0){
                     counter = 0;
+                }
                 input[counter] = '\0';
-            }
-            if(!(IsMouseHover(SizeX, SizeY, POS_X, POS_Y))){
-                break;
-            }
-            DrawText(input, 15, 15, 16, RED);     
         }
     }
     else{
         SetMouseCursor(MOUSE_CURSOR_DEFAULT);
     }
-    DrawText(input, 30, 30, 16, RED);
+    DrawText(input, POS_X + 10, floor(POS_Y + (GSizeY/2 - 20/2)), 20, RED);
+    DrawText("|", POS_X + MeasureText(input, 20) + 11, floor(POS_Y + (GSizeY/2 - 20/2)), 20, RED);
 }

@@ -7,6 +7,7 @@
 
 #include "../../include/components/Background.h"
 #include "../../include/components/Button.h"
+#include "../../include/components/Input.h"
 #include "../../include/core/Audio.h"
 
 //Render all app screens.
@@ -24,7 +25,8 @@ void Renderer(void){
     Texture2D HoveredMenuButton = HoverButton("./assets/Images/HoverButton.png");
     Texture2D RegisterMenu = RegisterMenuBackground("./assets/Images/RegisterMenuBackground.png");
     Texture2D SmallWindowButton = SmallButton("./assets/Images/Small_Window_Buttons.png");
-    char* input = calloc(100, sizeof(char));
+    Texture2D InputArea = LoadInput("./assets/Images/Input.png", ScreenXRelatedSize(4), ScreenYRelatedSize(12));
+    char* Input = calloc(100, sizeof(char));
 
     //Execution Loop
     while (currentScreen != EXIT)
@@ -38,7 +40,7 @@ void Renderer(void){
                 currentScreen = Menu(Background, MenuButton, HoveredMenuButton);
                 break;
             case REGISTER:
-                currentScreen = Register(Background, RegisterMenu, SmallWindowButton, MenuButton, input);
+                currentScreen = Register(Background, RegisterMenu, SmallWindowButton, MenuButton, InputArea, Input);
                 break;
             case INVENTORY:
                 currentScreen = Inventory();
@@ -53,5 +55,7 @@ void Renderer(void){
     UnloadTexture(HoveredMenuButton);
     UnloadSound(CoinSound);
     UnloadSound(PowerUpSound);
-    free(input);
+    UnloadTexture(RegisterMenu);
+    UnloadTexture(InputArea);
+    free(Input);
 }

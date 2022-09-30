@@ -8,6 +8,8 @@ typedef struct{
     char data[1024];
 }Input;
 
-void InputComponent(char*, int, int, int, int);
+
+Texture2D LoadInput(const char*, int, int);
+void InputComponent(Texture2D, char*, int, int);
 
 #endif
