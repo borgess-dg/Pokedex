@@ -10,6 +10,6 @@
 #define STATIC "static"
 #define ANIMATION "animation"
 
-CurrentScreen Presentation(const char*, Sound, Sound);
+CurrentScreen Presentation(const char*, char*, Sound, Sound);
 
 #endif

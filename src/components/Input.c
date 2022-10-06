@@ -22,11 +22,12 @@ Texture2D LoadInput(const char* file, int SizeX, int SizeY){
 void InputComponent(Texture2D InputTexture, char* input, int POS_X, int POS_Y){
     static bool isFocused;
     static int counter;
+    static int frameCounter;
     DrawTextureEx(InputTexture, (Vector2){POS_X, POS_Y}, 0.f, 1.f, WHITE);
     //DrawRectangle(POS_X, POS_Y, GSizeX, GSizeY, WHITE);
     if(IsMouseHover(GSizeX, GSizeY, POS_X, POS_Y)){
-        SetMouseCursor(MOUSE_CURSOR_IBEAM);
         isFocused = true;
+        SetMouseCursor(MOUSE_CURSOR_IBEAM);
         int key = GetCharPressed();
         while(key > 0){
             if(((key >= 32) && (key <= 125)) && (counter < 25)){
@@ -48,5 +49,14 @@ void InputComponent(Texture2D InputTexture, char* input, int POS_X, int POS_Y){
         SetMouseCursor(MOUSE_CURSOR_DEFAULT);
     }
     DrawText(input, POS_X + 10, floor(POS_Y + (GSizeY/2 - 20/2)), 20, RED);
-    DrawText("|", POS_X + MeasureText(input, 20) + 11, floor(POS_Y + (GSizeY/2 - 20/2)), 20, RED);
+    frameCounter++;
+    if(isFocused){
+        if(frameCounter % 60 == 0){
+            DrawText("|", POS_X + MeasureText(input, 20) + 11, floor(POS_Y + (GSizeY/2 - 20/2)), 20, RED);
+        }
+        else{
+            isFocused = false;
+            DrawText("", POS_X + MeasureText(input, 20) + 11, floor(POS_Y + (GSizeY/2 - 20/2)), 20, RED);
+        }
+    }
 }

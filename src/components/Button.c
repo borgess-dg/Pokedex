@@ -10,6 +10,14 @@ Texture2D Button(const char* file){
     return T_Button;
 }
 
+Texture2D LoadCardButton(const char* file){
+    Image I_Button = LoadImage(file);
+    ImageResize(&I_Button, ScreenXRelatedSize(6), ScreenYRelatedSize(12));
+    Texture2D T_Button = LoadTextureFromImage(I_Button);
+    UnloadImage(I_Button);
+    return T_Button;
+}
+
 Texture2D HoverButton(const char* file){
     Image I_HButton = LoadImage(file);
     ImageResize(&I_HButton, ScreenXRelatedSize(4), ScreenYRelatedSize(9));
@@ -20,7 +28,14 @@ Texture2D HoverButton(const char* file){
 
 Texture2D SmallButton(const char* file){
     Image S_Button = LoadImage(file);
-    ImageResize(&S_Button, ScreenXRelatedSize(25), ScreenYRelatedSize(15));
+    ImageResize(&S_Button, ScreenXRelatedSize(26), ScreenYRelatedSize(16));
+    Texture2D Button = LoadTextureFromImage(S_Button);
+    UnloadImage(S_Button);
+    return Button;
+}
+Texture2D SmallHoveredButton(const char* file){
+    Image S_Button = LoadImage(file);
+    ImageResize(&S_Button, ScreenXRelatedSize(26), ScreenYRelatedSize(16));
     Texture2D Button = LoadTextureFromImage(S_Button);
     UnloadImage(S_Button);
     return Button;

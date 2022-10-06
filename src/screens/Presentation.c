@@ -4,81 +4,26 @@
 #include "../../include/core/Renderer.h"
 
 #include <stdbool.h>
+#include <string.h>
 
-CurrentScreen Presentation(const char* type, Sound Coin, Sound Powerup){
-
-    char* Names = calloc(22, sizeof(char));
-    static int ExecCounter = 1;
-    if(ExecCounter == 1){
-        BeginDrawing();
-        ClearBackground(BLACK);
-        strcat(Names, "Eduardo José Borges\n");
-        DrawText(Names, 0, 0, 20, RAYWHITE);
-        PlayRefSound(Coin);
-        WaitTime(5);
-        /**strcat(Names, "Iago Melo\n");
-        DrawText(Names, 0, 0, 20, RAYWHITE);
-        PlayRefSound(Coin);
+CurrentScreen Presentation(const char* type, char* PresentationText, Sound Coin, Sound Powerup){
+    strcpy(PresentationText, "Eduardo Jose Borges\nIago Oliveira Melo\nLaidson Costa Loiola");
+    char Names[60];
+    int Positions[3] = {19, 38, 58};
+    static int PresentationExecCounter;
+    BeginDrawing();
+    ClearBackground(BLACK);
+    if(!PresentationExecCounter){
+        DrawText("Eduardo José Borges", floor((GetScreenWidth()/2) - (MeasureText(PresentationText, 24)/2)), floor((GetScreenHeight()/2) - (24)), 24, WHITE);
         WaitTime(1);
-        strcat(Names, "Laidson C. Loiola");
-        DrawText(Names, 0, 0, 20, RAYWHITE);
-        PlayRefSound(Coin);
+        DrawText("Iago Oliveira Melo", floor((GetScreenWidth()/2) - (MeasureText(PresentationText, 24)/2)), floor((GetScreenHeight()/2) - (24)), 24, WHITE);
         WaitTime(1);
-        **/
-        EndDrawing();
-    }
-    /**else{
-        strcpy(Names, "Eduardo José Borges\nIago Melo\nLaidson C. Loiola");
-        BeginDrawing();
-        ClearBackground(BLACK);
-        DrawText("Hello", 0, 0, 24, RAYWHITE);
-        PlayRefSound(Powerup);
-        WaitTime(3);
-        EndDrawing();
-        return MENU;
-    }
-    **/
-    return PRESENTATION;
-}
-
-/**CurrentScreen Presentation(const char* type, Sound Coin, Sound Powerup){
-    char NAMES[49];
-    char S_NAMES[49];
-    Coordinates Window = WindowCenter();
-    static int exeCount;
-    strcpy(NAMES, "Eduardo J. Borges\nIago Melo\nLaidson Costa Loiola");
-    if(!strcmp(type, ANIMATION)){
-        for(int i = 0;  i < 3; i++){
-            if(i == 0){
-                strncpy(S_NAMES, NAMES, 17);
-            }
-            else if(i == 1){
-                strncpy(S_NAMES, NAMES, 28);
-            }
-            else{
-                strncpy(S_NAMES, NAMES, 47);
-            }
-            BeginDrawing();
-            ClearBackground(BLACK);
-            DrawText(S_NAMES, Window.x - 80, Window.y - 50, 18, RAYWHITE);
-            WaitTime(1);
-            PlayRefSound(Coin);
-            EndDrawing();
-        }
+        DrawText("Laidson Costa Loiola", floor((GetScreenWidth()/2) - (MeasureText(PresentationText, 24)/2)), floor((GetScreenHeight()/2) - (24)), 24, WHITE);
+        WaitTime(1);
     }
     else{
-        ClearBackground(BLACK);
-        DrawText("Not Working!", 0, 0, 24, RAYWHITE);
-        DrawText(NAMES, Window.x - 90, Window.y - 60, 24, RAYWHITE);
-        if(!exeCount){
-            WaitTime(1);
-            PlayRefSound(Powerup);
-        }
-        exeCount++;
-        WaitTime(3);
-        EndDrawing();
-        return MENU;
+        DrawText(PresentationText, floor((GetScreenWidth()/2) - (MeasureText(PresentationText, 24)/2)), floor((GetScreenHeight()/2) - (24)), 24, WHITE);
     }
+    EndDrawing();
     return PRESENTATION;
 }
-**/

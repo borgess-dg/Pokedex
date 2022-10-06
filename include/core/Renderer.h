@@ -2,6 +2,7 @@
 #define RENDERER_H
 
 #include "../../include/core/Assets_Constants.h"
+#include "./Pokemon.h"
 
 #include <stdbool.h>
 
