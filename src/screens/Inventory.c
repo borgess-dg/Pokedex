@@ -57,16 +57,16 @@ CurrentScreen Inventory(Texture2D Background, Texture2D RegisterScreenBackground
 
     //Save Button
     if(IsMouseHover(ScreenXRelatedSize(4), ScreenYRelatedSize(9), ScreenXRelatedSize(2.5), ScreenYRelatedSize(1.25))){
-        DrawTextureEx(HoveredButton, (Vector2){ScreenXRelatedSize(2.5), ScreenYRelatedSize(1.28)}, 0.f, 1.f, WHITE);
-        DrawText("Voltar ao Menu", ScreenXRelatedSize(2.5) + floor((Button.width/2) - MeasureText("Voltar ao Menu", 24)/2), ScreenYRelatedSize(1.28) + floor(Button.height/2 - 24/2), 24, (Color){174, 150, 180, 255});
+        DrawTextureEx(ExitButton, (Vector2){ScreenXRelatedSize(2.5), ScreenYRelatedSize(1.28)}, 0.f, 1.f, WHITE);
+        DrawText("Voltar ao Menu", ScreenXRelatedSize(2.5) + floor((ExitButton.width/2) - MeasureText("Voltar ao Menu", 24)/2), ScreenYRelatedSize(1.28) + floor(ExitButton.height/2 - 24/2), 24, (Color){174, 150, 180, 255});
         SetMouseCursor(MOUSE_CURSOR_NOT_ALLOWED);
         if(IsMouseButtonPressed(MOUSE_BUTTON_LEFT)){
             return MENU;
          }
     }
     else{
-        DrawTextureEx(Button, (Vector2){ScreenXRelatedSize(2.5), ScreenYRelatedSize(1.28)}, 0.f, 1.f, WHITE);
-        DrawText("Voltar ao Menu", ScreenXRelatedSize(2.5) + floor((Button.width/2) - MeasureText("Voltar ao Menu", 24)/2), ScreenYRelatedSize(1.28) + floor(Button.height/2 - 24/2), 24, (Color){174, 150, 180, 255});
+        DrawTextureEx(HoveredExitButton, (Vector2){ScreenXRelatedSize(2.5), ScreenYRelatedSize(1.28)}, 0.f, 1.f, WHITE);
+        DrawText("Voltar ao Menu", ScreenXRelatedSize(2.5) + floor((HoveredExitButton.width/2) - MeasureText("Voltar ao Menu", 24)/2), ScreenYRelatedSize(1.28) + floor(HoveredExitButton.height/2 - 24/2), 24, (Color){174, 150, 180, 255});
         //SetMouseCursor(MOUSE_CURSOR_DEFAULT);
     }
 
